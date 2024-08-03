@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------------------
+- Create a very simple implementation of our card field (or popup)
+  to make payment using the sandbox environment
+
+- Be prepared to explain how things are working and how you implemented during the interview
+---------------------------------------------------------------------------------------
+
+[TODO] Read the Documentation
+[TODO] Check link to card payments introductions
+[TODO] Card field or a button to trigger a popup - Have a widget visible () / front end
+[TODO] Be connected to the send box environment (backend)
+[TODO] Charge 1 GBP
+[TODO] Order ID - input field or have a button to generate an order 
+[TODO] All card in the link should working
+[TODO] Page should show if payment as succesfull or not
+
+
+----- Bonus -------
+[TODO] Display an error when a payment fails
+[TODO] Allow in put variable amounts
+[TODO] Change the theme of the card
+-------------------
