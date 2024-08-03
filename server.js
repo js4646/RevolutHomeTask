@@ -15,8 +15,12 @@ dotenv.config();
 
 const merchantServicesCreateOrder = async function () {
   let data = JSON.stringify({
-    "amount": 1,
+    "amount": 100,
     "currency": "GBP",
+    // "customer": {
+    //   "email": "simons.jordie@gmail.com",
+    //   "full_name": "Jordie Simons",
+    // },
   });
 
   let config = {
@@ -34,7 +38,7 @@ const merchantServicesCreateOrder = async function () {
 
   try {
     const response = await axios(config); // Await the promise and get the response
-    console.log(JSON.stringify(response.data.token));
+    console.log(JSON.stringify(response.data));
     return JSON.stringify(response.data.token); // Return the resolved data
   } catch (error) {
     console.log(error);
@@ -48,16 +52,13 @@ const apiKey = process.env.MERCHANT_API_KEY;
 const apiSecret = process.env.MERCHANT_API_SECRET;
 
 // Use static middleware to serve files from the 'public' directory
-app.use(express.static(path.join(__dirname, "publicAppRevolut")));
+app.use(express.static(path.join(__dirname, "dist/publicAppRevolut")));
 
 //Listen to checkout directory
 app.get("/checkout", async (req, res) => {
   console.log("Check out called");
-  await merchantServicesCreateOrder().then((orderToken) => {
-    // console.log("here");
-    // console.log(order);
-    res.send(`Welcome to the checkout page<br><br>` + orderToken);
-  });
+  const orderToken = await merchantServicesCreateOrder();
+  res.send(orderToken);
 });
 
 // Listen on the port

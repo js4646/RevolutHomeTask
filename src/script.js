@@ -1,13 +1,38 @@
+"use strict";
 import RevolutCheckout from "@revolut/checkout";
 
-const btn = document.querySelector(".btn-country");
-const countriesContainer = document.querySelector(".countries");
+const getOrderCardField = async function () {
+  // Get
+  const res = await fetch("/checkout"); // res will be a promis
+  console.log(res);
+  const orderToken = await res.json(); // Extract order Token
+  console.log(orderToken);
+  const { createCardField } = await RevolutCheckout(orderToken, "sandbox"); // creates card field
 
-///
+  const cardField = createCardField({
+    target: document.getElementById("cart-field"),
+    onSuccess() {
+      // Do something to handle successful payments
+      window.alert("Thank you!");
+    },
+    onError(error) {
+      // Do something to handle payment errors
+      window.alert(`Something went wrong. ${error}`);
+    },
+  });
 
-console.log("1");
-const orderToken = "aec77991-df7a-49ad-8133-97ec9e5595aa";
-const { createCardField } = await RevolutCheckout(orderToken);
+  document
+    .getElementById("button-submit")
+    .addEventListener("click", function () {
+      cardField.submit({
+        "email": "financetofire@hotmail.com",
+        "name": "Jordie Simons",
+      });
+    });
+};
+
+getOrderCardField();
+
 console.log("2");
 ///////////////////////////////////////
 const renderCountry = function (data, className = "") {
@@ -50,7 +75,3 @@ const getCountryData = function (country) {
     })
     .catch((err) => alert(err));
 };
-
-btn.addEventListener("click", function () {
-  getCountryData("spain");
-});

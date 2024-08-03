@@ -1,0 +1,7 @@
+#cart-field {
+    width: 20%; /* Sets the width to 10% of the viewport width */
+    height: 20%; /* Sets the height to 20% of the viewport height */
+    background-color: lightgray; /* Sets the background color to light gray */
+    border: 1px solid #c24b4b; /* Optional: adds a border */
+  }
+  
