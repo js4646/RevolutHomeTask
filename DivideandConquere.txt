@@ -8,6 +8,11 @@
 [TODO] Read the Documentation
 [TODO] Check link to card payments introductions
 [TODO] Card field or a button to trigger a popup - Have a widget visible () / front end
+-
+-
+-
+-
+
 [TODO] Be connected to the send box environment (backend)
 [TODO] Charge 1 GBP
 [TODO] Order ID - input field or have a button to generate an order 
