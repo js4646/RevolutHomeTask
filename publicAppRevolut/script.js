@@ -1,10 +1,16 @@
-'use strict';
+import RevolutCheckout from "@revolut/checkout";
 
-const btn = document.querySelector('.btn-country');
-const countriesContainer = document.querySelector('.countries');
+const btn = document.querySelector(".btn-country");
+const countriesContainer = document.querySelector(".countries");
 
+///
+
+console.log("1");
+const orderToken = "aec77991-df7a-49ad-8133-97ec9e5595aa";
+const { createCardField } = await RevolutCheckout(orderToken);
+console.log("2");
 ///////////////////////////////////////
-const renderCountry = function (data, className = '') {
+const renderCountry = function (data, className = "") {
   console.log(data);
   const html = `
     <article class="country ${className}">
@@ -20,30 +26,31 @@ const renderCountry = function (data, className = '') {
       </div>
     </article>
     `;
-  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.insertAdjacentHTML("beforeend", html);
   countriesContainer.style.opacity = 1;
 };
 
 const getCountryData = function (country) {
   // Country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders[0];
 
-      if (!neighbour) throw new Error('No neighbour found!');
+      if (!neighbour) throw new Error("No neighbour found!");
 
       // Country 2
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
-    .then(response => response.json())
-    .then(data => renderCountry(data[0], 'neighbour'))
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0], "neighbour"))
     .finally(() => {
       countriesContainer.style.opacity = 1;
     })
-    .catch(err => alert(err));
+    .catch((err) => alert(err));
 };
-btn.addEventListener('click', function () {
-  getCountryData('spain');
+
+btn.addEventListener("click", function () {
+  getCountryData("spain");
 });
