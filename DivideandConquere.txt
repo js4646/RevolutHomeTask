@@ -11,12 +11,12 @@
 [DONE] Be connected to the send box environment (backend)
 [DONE] Charge 1 GBP
 [DONE] Have a button to generate an order 
-[ONGOING] All card in the link should working
-[TODO] Page should show if payment as succesfull or not
+[Done] All card in the link should working
+[Done] Page should show if payment as succesfull or not
 
 
 ----- Bonus -------
 [TODO] Display an error when a payment fails
-[TODO] Allow in put variable amounts
-[TODO] Change the theme of the card
+[DONE] Allow in put variable amounts
+[Ongoing] Change the theme of the card
 -------------------

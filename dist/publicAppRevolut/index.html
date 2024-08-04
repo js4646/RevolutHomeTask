@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
     <script defer src="bundle.js"></script>
-    <title>Asynchronous JavaScript</title>
+    <title>Revolut Home Task</title>
   </head>
   <body>
-    <b> Please use this button to create an order: </b>
+    <b> Create order: </b><br>
+    <label for="order-price">Order price (GBP):</label><br>
+    <input type="number" step="0.01" placeholder="1.00" id="order-price" name="order-price"><br>
     <button id="button-create-order" type="button">Create New Order</button>
     <br>
     <br>
@@ -17,6 +19,9 @@
     <br>
     <b>Please fill in your card details:</b>
     <div id="cart-field"></div>
-    <button id="button-pay" type="button">Pay</button>
+    <button id="button-pay" type="button">Pay</button><br>
+    <br>
+    <div id="payment-status"></div>
+
   </body>
 </html>

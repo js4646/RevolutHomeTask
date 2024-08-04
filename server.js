@@ -12,15 +12,13 @@ dotenv.config();
 // [Done] create an order route
 // [Done] server creates an order
 // [Done] client side creates an instance using the createCardField (using data form server)
+// [Done] make amount variable depending on html input
+// [Done] return the order id to the html page
 
-const merchantServicesCreateOrder = async function (price = 1) {
+const merchantServicesCreateOrder = async function (price = 100) {
   let data = JSON.stringify({
     "amount": price,
     "currency": "GBP",
-    // "customer": {
-    //   "email": "simons.jordie@gmail.com",
-    //   "full_name": "Jordie Simons",
-    // },
   });
 
   let config = {
@@ -39,7 +37,10 @@ const merchantServicesCreateOrder = async function (price = 1) {
   try {
     const response = await axios(config); // Await the promise and get the response
     console.log(JSON.stringify(response.data));
-    return JSON.stringify(response.data.token); // Return the resolved data
+    return JSON.stringify({
+      token: response.data.token,
+      order_id: response.data.id,
+    }); // Return the resolved data
   } catch (error) {
     console.log(error);
     throw error; // Propagate the error so it can be caught by the caller
@@ -51,14 +52,27 @@ const PORT = 3342;
 const apiKey = process.env.MERCHANT_API_KEY;
 const apiSecret = process.env.MERCHANT_API_SECRET;
 
-// Use static middleware to serve files from the 'public' directory
+// Use static middleware to serve files from the 'dist/publicAppRevolut' directory
 app.use(express.static(path.join(__dirname, "dist/publicAppRevolut")));
 
-//Listen to checkout directory
-app.get("/createorder", async (req, res) => {
-  console.log("Check out called");
-  const orderToken = await merchantServicesCreateOrder(200);
-  res.send(orderToken);
+//Listen to createOrder api call
+app.post("/createorder", express.json(), async (req, res) => {
+  console.log("Create order called");
+  try {
+    let { orderPrice } = req.body;
+
+    if (orderPrice == 0) {
+      orderPrice = 1; // As suggested in the Task
+    }
+
+    const orderResponse = await merchantServicesCreateOrder(orderPrice * 100);
+    res.send(orderResponse);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Order failed to create",
+    });
+  }
 });
 
 // Listen on the port
