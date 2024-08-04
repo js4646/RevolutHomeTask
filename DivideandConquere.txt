@@ -26,5 +26,5 @@
 // [Done] client-side creates an instance using the createCardField (using data form server)
 // [Done] make amount variable depending on html input
 // [Done] return the order id to the html page
-// [todo] clean up code
-// [todo] prepare email and instructions + screen recording
+// [Done] clean up code
+// [Done] prepare email and instructions
