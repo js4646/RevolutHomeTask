@@ -34,8 +34,7 @@ const getOrderCardField = async function (price = 0) {
     target: document.getElementById("cart-field"),
     // Handle events related to the payment
     onSuccess() {
-      document.getElementById("payment-status").innerText =
-        "Payment Succesfull";
+      document.getElementById("payment-status").innerText = "Payment Succesful";
       document.getElementById("payment-status").style.color = "green";
       window.alert("Thank you for your purchase!");
     },
