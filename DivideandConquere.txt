@@ -11,12 +11,20 @@
 [DONE] Be connected to the send box environment (backend)
 [DONE] Charge 1 GBP
 [DONE] Have a button to generate an order 
-[Done] All card in the link should working
-[Done] Page should show if payment as succesfull or not
-
+[DONE] All card in the link should working
+[DONE] Page should show if payment as succesfull or not
 
 ----- Bonus -------
-[TODO] Display an error when a payment fails
+[DONE] Display an error when a payment fails
 [DONE] Allow in put variable amounts
-[Ongoing] Change the theme of the card
+[DONE] Change the theme of the card
 -------------------
+
+// ----- TODO List -----
+// [Done] create an order route
+// [Done] server-side creates an order
+// [Done] client-side creates an instance using the createCardField (using data form server)
+// [Done] make amount variable depending on html input
+// [Done] return the order id to the html page
+// [todo] clean up code
+// [todo] prepare email and instructions + screen recording

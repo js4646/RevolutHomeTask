@@ -14,9 +14,11 @@ const getOrderCardField = async function (price = 0) {
   });
 
   // res will get value when promise is fullfilled
-  console.log(res);
-  const orderResponse = await res.json(); // Extract order Token
+  // console.log(res);
+  const orderResponse = await res.json(); // {token: '...', order_id: '...'}
   console.log(orderResponse);
+
+  //Show order token and order_id in webpage
   document.getElementById(
     "order-info"
   ).innerHTML = `<b>Order has been created:</b><br>
@@ -24,10 +26,13 @@ const getOrderCardField = async function (price = 0) {
                  - Order id: ${orderResponse.order_id}<br> 
                 `;
 
-  const instance = await RevolutCheckout(orderResponse.token, "sandbox"); // creates card field
+  //get the revolut checkout instance
+  const instance = await RevolutCheckout(orderResponse.token, "sandbox");
 
+  // creates card field and mounts it to the "cart-field" div
   const cardField = instance.createCardField({
     target: document.getElementById("cart-field"),
+    // Handle events related to the payment
     onSuccess() {
       document.getElementById("payment-status").innerText =
         "Payment Succesfull";
@@ -38,25 +43,34 @@ const getOrderCardField = async function (price = 0) {
       document.getElementById(
         "payment-status"
       ).innerText = `Payment failed: ${error}`;
+
       document.getElementById("payment-status").style.color = "red";
+
       window.alert(`Oeps somethin happend :(. ${error}`);
+    },
+    theme: "light",
+    styles: {
+      border: "1px solid #ae9f9",
     },
   });
 
-  console.log(cardField);
+  //Ask for card details and show payment button
+  document.getElementById("ask-card-details").style.visibility = "visible";
+  document.getElementById("cart-field").style.border = "1px solid #ae9f9f";
+  document.getElementById("button-pay").style.visibility = "visible";
+  //console.log(cardField);
 
   //Add event listener to the pay button
-  const temp = await document
-    .getElementById("button-pay")
-    .addEventListener("click", function () {
-      cardField.submit({
-        "email": "financetofire@hotmail.com",
-        "name": "Jordie Simons",
-      });
+  document.getElementById("button-pay").addEventListener("click", function () {
+    cardField.submit({
+      //both fields are required
+      "email": "financetofire@hotmail.com",
+      "name": "Jordie Simons",
     });
+  });
 };
 
-// Reference to price
+// Reference to price input element in the webpage
 const orderPriceElement = document.getElementById("order-price");
 
 // Eventlistener to create order
