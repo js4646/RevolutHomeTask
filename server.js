@@ -9,13 +9,13 @@ const app = express();
 dotenv.config();
 
 // --- Merchant services
-// [Done] create checkout route
+// [Done] create an order route
 // [Done] server creates an order
-// [Ongoing] client side creates an instance using the createCardField (using date form server)
+// [Done] client side creates an instance using the createCardField (using data form server)
 
-const merchantServicesCreateOrder = async function () {
+const merchantServicesCreateOrder = async function (price = 1) {
   let data = JSON.stringify({
-    "amount": 100,
+    "amount": price,
     "currency": "GBP",
     // "customer": {
     //   "email": "simons.jordie@gmail.com",
@@ -55,9 +55,9 @@ const apiSecret = process.env.MERCHANT_API_SECRET;
 app.use(express.static(path.join(__dirname, "dist/publicAppRevolut")));
 
 //Listen to checkout directory
-app.get("/checkout", async (req, res) => {
+app.get("/createorder", async (req, res) => {
   console.log("Check out called");
-  const orderToken = await merchantServicesCreateOrder();
+  const orderToken = await merchantServicesCreateOrder(200);
   res.send(orderToken);
 });
 

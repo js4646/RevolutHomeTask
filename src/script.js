@@ -3,26 +3,31 @@ import RevolutCheckout from "@revolut/checkout";
 
 const getOrderCardField = async function () {
   // Get
-  const res = await fetch("/checkout"); // res will be a promis
+  const res = await fetch("/createorder"); // res will get value when promise is fullfilled
   console.log(res);
   const orderToken = await res.json(); // Extract order Token
   console.log(orderToken);
-  const { createCardField } = await RevolutCheckout(orderToken, "sandbox"); // creates card field
+  document.getElementById(
+    "order-info"
+  ).innerText = `Order has been created with token: ${orderToken}`;
 
-  const cardField = createCardField({
+  const instance = await RevolutCheckout(orderToken, "sandbox"); // creates card field
+
+  const cardField = instance.createCardField({
     target: document.getElementById("cart-field"),
     onSuccess() {
-      // Do something to handle successful payments
-      window.alert("Thank you!");
+      window.alert("Thank you for your purchase!");
     },
     onError(error) {
-      // Do something to handle payment errors
-      window.alert(`Something went wrong. ${error}`);
+      window.alert(`Oeps somethin happend :(. ${error}`);
     },
   });
 
-  document
-    .getElementById("button-submit")
+  console.log(cardField);
+
+  //Add event listener to the pay button
+  const temp = await document
+    .getElementById("button-pay")
     .addEventListener("click", function () {
       cardField.submit({
         "email": "financetofire@hotmail.com",
@@ -31,9 +36,11 @@ const getOrderCardField = async function () {
     });
 };
 
-getOrderCardField();
+// Button to create order
+document
+  .getElementById("button-create-order")
+  .addEventListener("click", getOrderCardField);
 
-console.log("2");
 ///////////////////////////////////////
 const renderCountry = function (data, className = "") {
   console.log(data);

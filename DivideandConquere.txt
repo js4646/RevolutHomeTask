@@ -5,18 +5,13 @@
 - Be prepared to explain how things are working and how you implemented during the interview
 ---------------------------------------------------------------------------------------
 
-[TODO] Read the Documentation
-[TODO] Check link to card payments introductions
-[TODO] Card field or a button to trigger a popup - Have a widget visible () / front end
--
--
--
--
-
-[TODO] Be connected to the send box environment (backend)
-[TODO] Charge 1 GBP
-[TODO] Order ID - input field or have a button to generate an order 
-[TODO] All card in the link should working
+[DONE] Read the Documentation
+[DONE] Check link to card payments introductions
+[DONE] Card field or a button to trigger a popup - Have a widget visible () / front end
+[DONE] Be connected to the send box environment (backend)
+[DONE] Charge 1 GBP
+[DONE] Have a button to generate an order 
+[ONGOING] All card in the link should working
 [TODO] Page should show if payment as succesfull or not
 
 
