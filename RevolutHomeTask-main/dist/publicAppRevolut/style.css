@@ -1,0 +1,22 @@
+#cart-field { 
+  width: 25%;
+  background-color: rgb(187, 188, 209);
+}
+
+#ask-card-details, #button-pay{
+visibility: hidden;
+}
+
+.custom-card-field {
+border: 3px solid #00FF00;
+padding: 10px;
+border-radius: 10px;
+background-color: #f9f9f9;
+}
+
+.custom-card-field-focused {
+border: 3px solid #00FF00;
+padding: 10px;
+border-radius: 0px;
+background-color: #f9f9f9;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.homeTask.js"></script>
+    <title>Revolut Home Task</title>
+  </head>
+  <body>
+    <b> Create order: </b><br />
+    <label for="order-price">Order price (GBP):</label><br />
+    <input
+      type="number"
+      step="0.01"
+      placeholder="0.00"
+      id="order-price"
+      name="order-price"
+    /><br />
+    <button id="button-create-order" type="button">Create New Order</button>
+    <br />
+    <input type="checkbox" name="paymentAllowed" />Payment allowed with RevPay
+    <br />
+    <div id="order-info"></div>
+    <br />
+    <div id="ask-card-details"><b>Please fill in your card details:</b></div>
+    <div id="cart-field"></div>
+    <button id="button-pay" type="button">Pay</button><br />
+    <button id="button-destroy" type="button">Destroy</button><br />
+    <br />
+    <div id="payment-status"></div>
+    <!-- Divider -->
+    <hr />
+    <h2>Select Payment Method</h2>
+    <div id="payment-options-selection">
+      <label>
+        <input type="radio" name="payment-method" value="revolut-pay" />
+        Revolut Pay all the way </label
+      ><br />
+      <br />
+      <label>
+        <input type="radio" name="payment-method" value="apple-google-pay" />
+        Apple/Google Pay no way </label
+      ><br />
+      <br />
+      <label>
+        <input type="radio" name="payment-method" value="payment-links" />
+        Payment Links </label
+      ><br />
+      <br />
+      <label>
+        <input type="radio" name="payment-method" value="card-field" />
+        Card field </label
+      ><br />
+      <br />
+      <label>
+        <input type="radio" name="payment-method" value="pop-up" />
+        Pop-up field </label
+      ><br />
+      <br />
+      <label>
+        <input type="radio" name="payment-method" value="universal-link" />
+        Universal link </label
+      ><br />
+      <br />
+    </div>
+    <br />
+  </body>
+</html>
